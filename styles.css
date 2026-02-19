@@ -1,0 +1,599 @@
+/* ========================= */
+/* RESET */
+/* ========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: #111;
+  color: #fff;
+}
+
+/* ========================= */
+/* CONTAINER */
+/* ========================= */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* ========================= */
+/* HEADER */
+/* ========================= */
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  padding: 18px 0;
+  backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.35);
+  transition: 0.3s ease;
+}
+
+.header.scrolled {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 12px 0;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.logo img {
+  height: 38px;
+  transition: 0.3s ease;
+}
+
+.header.scrolled .logo img {
+  height: 30px;
+}
+
+/* NAV */
+.nav {
+  display: flex;
+  gap: 35px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #e10600;
+  transition: 0.3s ease;
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+/* Botón teléfono */
+.btn-phone {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s ease;
+}
+
+.btn-phone:hover {
+  background: #e10600;
+}
+
+/* ========================= */
+/* HERO */
+/* ========================= */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background-image: url("img/bg-hero.webp");
+  background-size: cover;
+  background-position: center;
+  padding-top: 120px; /* espacio para header */
+}
+
+/* Overlay oscuro */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.65) 25%,
+    rgba(0, 0, 0, 0.2) 90%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-text {
+  max-width: 600px;
+}
+/* Estado inicial oculto */
+.hero-text > * {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease forwards;
+}
+.hero h1 {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  animation-delay: 0.2s;
+}
+
+.hero h1 span {
+  color: #fff;
+}
+
+.hero-subtitle {
+  font-size: 16px;
+  color: #ccc;
+  margin-bottom: 30px;
+  line-height: 1.6;
+  animation-delay: 0.4s;
+}
+
+/* BOTONES */
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  animation-delay: 0.6s;
+}
+
+.btn-primary {
+  background: #e10600;
+  color: #fff;
+  padding: 14px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #ff2a2a;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 14px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* BENEFICIOS */
+.hero-benefits {
+  display: flex;
+  gap: 25px;
+  font-size: 14px;
+  color: #ddd;
+  animation-delay: 0.8s;
+}
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* ========================= */
+/* SERVICIOS */
+/* ========================= */
+.servicios {
+  padding: 120px 0;
+  background: #0d0d0d;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header h2 {
+  font-size: 36px;
+  margin-bottom: 15px;
+}
+
+.section-header p {
+  color: #aaa;
+  font-size: 16px;
+}
+
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.servicio-card {
+  position: relative;
+  height: 320px;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  cursor: pointer;
+  transform: translateY(0);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+/* Fondo interno (imagen real) */
+.card-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s ease;
+}
+.icons-servicios {
+  width: auto;
+  height: 2vh;
+}
+/* Hover suave y profesional */
+.servicio-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+}
+.servicio-card:hover .card-bg {
+  transform: scale(1.08);
+}
+
+.servicio-card:hover .card-overlay {
+  opacity: 0.85;
+}
+/* Asignamos imágenes */
+.card-1 .card-bg {
+  background-image: url("img/bg-plataforma.webp");
+}
+
+.card-2 .card-bg {
+  background-image: url("img/bg-brazo-articulado.webp");
+}
+
+.card-3 .card-bg {
+  background-image: url("img/bg-transporte-entrega.webp");
+}
+
+.card-4 .card-bg {
+  background-image: url("img/bg-soporte-tecnico.webp");
+}
+/* Overlay */
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.55) 50%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  transition: opacity 0.4s ease;
+}
+.card-content {
+  position: relative;
+  z-index: 3;
+  padding: 30px;
+}
+.card-content h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.card-content p {
+  font-size: 14px;
+  color: #ddd;
+  line-height: 1.6;
+}
+/* Hover efecto profesional */
+.servicio-card:hover {
+  transform: translateY(-10px);
+}
+
+.servicio-card:hover .card-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.5) 40%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+}
+
+.servicio-card:hover {
+  background-size: 110%;
+}
+.servicio-card .icon {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.servicio-card h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.servicio-card p {
+  font-size: 14px;
+  color: #bbb;
+  line-height: 1.6;
+}
+
+.servicios-cta {
+  text-align: center;
+  margin-top: 60px;
+}
+/* Animación inicial oculta */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* ========================= */
+/* EQUIPOS PROFESIONAL */
+/* ========================= */
+
+.equipos {
+  padding: 120px 0;
+  background: #111;
+}
+
+.equipos-filtros {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.filtro-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.filtro-btn.active,
+.filtro-btn:hover {
+  background: #e10600;
+  border-color: #e10600;
+}
+
+.equipos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+.equipo-card {
+  background: #1a1a1a; /* fondo oscuro elegante */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  transition: 0.4s ease;
+}
+
+.equipo-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+.equipo-card:hover img {
+  transform: scale(1.1);
+}
+/* Overlay oscuro elegante */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+}
+.equipo-img {
+  position: relative;
+  height: 260px;
+  overflow: hidden;
+}
+.equipo-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.equipo-info {
+  padding: 30px;
+}
+
+.equipo-info h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #fff;
+}
+
+.equipo-info ul {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.equipo-info ul li {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 6px;
+}
+
+.equipo-info ul li::before {
+  content: "✔ ";
+  color: #e10600;
+}
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 1200;
+}
+
+.menu-toggle span {
+  width: 26px;
+  height: 2px;
+  background: #fff;
+  transition: 0.4s cubic-bezier(0.77, 0, 0.18, 1);
+}
+/* Animación a X */
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+.no-scroll {
+  overflow: hidden;
+}
+/* Responsive */
+@media (max-width: 768px) {
+  .equipo-img {
+    height: 200px;
+  }
+}
+@media (max-width: 900px) {
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 45px;
+    transform: translateY(-100%);
+    transition: transform 0.6s cubic-bezier(0.77, 0, 0.18, 1);
+    z-index: 2000;
+  }
+
+  .nav.active {
+    transform: translateY(0);
+  }
+  .nav a {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 3px;
+  }
+  /* Animación escalonada */
+  .nav.active a {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .nav.active a:nth-child(1) {
+    transition-delay: 0.2s;
+  }
+  .nav.active a:nth-child(2) {
+    transition-delay: 0.3s;
+  }
+  .nav.active a:nth-child(3) {
+    transition-delay: 0.4s;
+  }
+  .header-cta {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+  /* Overlay oscuro */
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.4s ease;
+    z-index: 1000;
+  }
+
+  .menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .hero h1 {
+    font-size: 34px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .hero-benefits {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .servicios-grid {
+    grid-template-columns: 1fr;
+  }
+  .equipos-grid {
+    grid-template-columns: 1fr;
+  }
+}

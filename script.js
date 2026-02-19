@@ -1,79 +1,88 @@
-document.addEventListener("DOMContentLoaded", () => {
-  /* =========================
-     HEADER SCROLL EFFECT
-  ========================= */
-  const header = document.getElementById("header");
+const toggle = document.getElementById("menu-toggle");
+const nav = document.querySelector(".nav-desktop");
+const body = document.body;
 
-  window.addEventListener("scroll", () => {
-    header.classList.toggle("scrolled", window.scrollY > 50);
-  });
+toggle.addEventListener("click", () => {
+  nav.classList.toggle("active");
+  toggle.classList.toggle("active");
+  body.classList.toggle("menu-open");
+});
 
-  /* =========================
-     MENU HAMBURGUESA PRO
-  ========================= */
-  const toggle = document.getElementById("menu-toggle");
-  const nav = document.getElementById("nav");
-
-  function closeMenu() {
-    toggle.classList.remove("active");
+document.querySelectorAll(".nav-desktop a").forEach(link => {
+  link.addEventListener("click", () => {
     nav.classList.remove("active");
-    document.body.classList.remove("no-scroll");
-  }
-
-  toggle.addEventListener("click", () => {
-    toggle.classList.toggle("active");
-    nav.classList.toggle("active");
-    document.body.classList.toggle("no-scroll");
+    toggle.classList.remove("active");
+    body.classList.remove("menu-open");
   });
+});
+// Reveal animation
+const reveals = document.querySelectorAll(".reveal");
 
-  document.querySelectorAll(".nav a").forEach((link) => {
-    link.addEventListener("click", closeMenu);
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("active");
+    }
   });
+}, {
+  threshold: 0.15
+});
 
-  /* =========================
-     REVEAL ON SCROLL
-  ========================= */
-  const reveals = document.querySelectorAll(".reveal");
+reveals.forEach((reveal) => {
+  observer.observe(reveal);
+});
+// =====================
+// FILTRO DE EQUIPOS
+// =====================
 
-  function revealOnScroll() {
-    reveals.forEach((element) => {
-      const windowHeight = window.innerHeight;
-      const elementTop = element.getBoundingClientRect().top;
-      const revealPoint = 100;
+const filterButtons = document.querySelectorAll(".filtro-btn");
+const cards = document.querySelectorAll(".equipo-card");
 
-      if (elementTop < windowHeight - revealPoint) {
-        element.classList.add("active");
-      }
-    });
-  }
+filterButtons.forEach(button => {
+  button.addEventListener("click", () => {
 
-  window.addEventListener("scroll", revealOnScroll);
-  revealOnScroll();
+    // Quitar clase active a todos los botones
+    filterButtons.forEach(btn => btn.classList.remove("active"));
 
-  /* =========================
-     FILTRO EQUIPOS
-  ========================= */
-  const filterButtons = document.querySelectorAll(".filtro-btn");
-  const cards = document.querySelectorAll(".equipo-card");
+    // Activar botón actual
+    button.classList.add("active");
 
-  filterButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const activeBtn = document.querySelector(".filtro-btn.active");
-      if (activeBtn) activeBtn.classList.remove("active");
+    const filterValue = button.getAttribute("data-filter");
 
-      btn.classList.add("active");
+    cards.forEach(card => {
 
-      const filter = btn.getAttribute("data-filter");
-
-      cards.forEach((card) => {
-        if (filter === "all") {
-          card.style.display = "block";
+      if (filterValue === "all") {
+        card.style.display = "flex";
+      } else {
+        if (card.classList.contains(filterValue)) {
+          card.style.display = "flex";
         } else {
-          card.style.display = card.classList.contains(filter)
-            ? "block"
-            : "none";
+          card.style.display = "none";
         }
-      });
+      }
+
     });
+
+  });
+});
+const faqItems = document.querySelectorAll(".faq-item");
+
+faqItems.forEach(item => {
+  const question = item.querySelector(".faq-question");
+
+  question.addEventListener("click", () => {
+    const isActive = item.classList.contains("active");
+
+    // cerrar todos
+    faqItems.forEach(i => {
+      i.classList.remove("active");
+      i.querySelector(".faq-answer").style.maxHeight = null;
+    });
+
+    if (!isActive) {
+      item.classList.add("active");
+      const answer = item.querySelector(".faq-answer");
+      answer.style.maxHeight = answer.scrollHeight + "px";
+    }
   });
 });

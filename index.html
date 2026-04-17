@@ -798,6 +798,18 @@
 
     gtag('config', 'AW-18069523321');
   </script>
+  <script>
+    // Conversion tracking: fires on every WhatsApp link click
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('a[href*="wa.me"]').forEach(function (link) {
+        link.addEventListener('click', function () {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-18069523321/KPrLCLyXr50cEPmWnKhD'
+          });
+        });
+      });
+    });
+  </script>
   <script src="script.js"></script>
   <a href="https://wa.me/51923428761" class="whatsapp-float" target="_blank" aria-label="WhatsApp GRAVITEK"
     rel="noopener noreferrer">
